@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 - 아무 말 대잔치</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+  <header class="header">
+    <span class="header-title">아무 말 대잔치</span>
+  </header>
+
+  <main class="main login-page">
+
+    <h1 class="page-title">로그인</h1>
+
+    <div class="card login-form-card">
+      <div class="field">
+        <div class="field-label">이메일</div>
+        <input type="email" id="email" placeholder="이메일을 입력하세요">
+        <div class="helper-text" id="emailHelper"></div>
+      </div>
+      <div class="field">
+        <div class="field-label">비밀번호</div>
+        <input type="password" id="password" placeholder="비밀번호를 입력하세요" minlength="8" maxlength="20">
+        <div class="helper-text" id="passwordHelper"></div>
+      </div>
+      <div class="helper-text" id="loginHelper"></div>
+    </div>
+
+    <!-- 로그인 버튼: 383 x 37 -->
+    <div class="card login-btn-card">
+      <button class="btn-primary" id="loginBtn" disabled>로그인</button>
+    </div>
+
+    <!-- 회원가입 링크: 90 x 30 -->
+    <div class="signup-link-card">
+      <button class="btn-text" id="goSignup">회원가입</button>
+    </div>
+
+  </main>
+  <script src="../js/login.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.login-form-card {
+  width: 392px;
+  height: 221px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-btn-card {
+  width: 383px;
+  height: 37px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login-btn-card .btn-primary {
+  height: 37px;
+  border-radius: 4px;
+  margin-top: 0;
+}
+
+.signup-link-card {
+  width: 90px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+}
+
+.btn-primary:disabled {
+    background-color: #ACA0EB;
+    cursor: not-allowed;
+}
+
+.btn-primary:not(:disabled) {
+    background-color: #7F6AEE;
+}
