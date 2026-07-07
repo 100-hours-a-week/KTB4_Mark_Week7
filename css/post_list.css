@@ -174,3 +174,13 @@
   width: 120px;
   border-radius: 14px;
 }
+
+.write-btn:disabled {
+  background-color: #D9D9D9;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.write-btn:disabled:hover {
+  background-color: #D9D9D9;
+}

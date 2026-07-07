@@ -15,7 +15,6 @@ const imageInput = document.createElement("input");
 imageInput.type = "file";
 imageInput.accept = "image/*";
 
-// 현재 유저 정보 불러오기
 get("users")
 .then(result => {
     userEmail.textContent = result.data.email;

@@ -1,4 +1,6 @@
-import {post} from "./router.js"
+import {get, post} from "./router.js"
+
+getCsrfToken();
 
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -10,7 +12,6 @@ const validates = {
     password : false
 }
 
-
 loginBtn.addEventListener("click", () =>{
     const request = {
         email : email.value,
@@ -21,6 +22,7 @@ loginBtn.addEventListener("click", () =>{
     .then(result => {
         localStorage.setItem("profileFileId", result.data.profileFileId);
         localStorage.setItem("userId", result.data.userId);
+        localStorage.setItem("userRole", result.data.userRole);
         location.replace("./post_list.html");
     })
     .catch(error => {
@@ -62,6 +64,7 @@ goSignup.addEventListener("click", () => {
     location.href = "./signup.html"
 });
 
+
 function emailValidate(){
     const regexEmail = /^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,}$/;
     return regexEmail.test(email.value)
@@ -82,4 +85,9 @@ function checkAllValidate(){
     } else {
         loginBtn.disabled = false;
     }
+}
+
+async function getCsrfToken(){
+    await cookieStore.delete("XSRF-TOKEN")
+    await get("csrf");
 }

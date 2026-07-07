@@ -11,7 +11,7 @@ let hasMore = true;
 writeBtn.addEventListener("click", () => {
     location.href = "./post_write.html";
 });
-
+writePermission();
 function loadPosts(){
     if(isLoading || !hasMore) return;
     isLoading = true;
@@ -69,3 +69,10 @@ window.addEventListener("scroll", () => {
         loadPosts();
     }
 });
+
+function writePermission(){
+    const userRole = localStorage.getItem("userRole");
+    if(userRole !== "ROLE_AUTH_USER"){
+        writeBtn.disabled = true;
+    }
+}

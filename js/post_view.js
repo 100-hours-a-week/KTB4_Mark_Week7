@@ -75,6 +75,7 @@ commentSubmitBtn.addEventListener("click", () => {
     post(`posts/${postId}/comments`, {comment: commentInput.value}, {"Content-Type": "application/json", "Idempotency-Key" : IdempotencyKey})
     .then(result => {
         commentInput.value = "";
+        localStorage.setItem("userRole", result.data.userRole);
         commentLoading(postId);
     })
 });
@@ -224,6 +225,7 @@ function commentLoading(postId){
                     {comment: replyText, parentCommentId: Number(parentCommentId)},
                     {"Content-Type": "application/json", "Idempotency-Key": self.crypto.randomUUID()}
                 ).then(result => {
+                    localStorage.setItem("userRole", result.data.userRole);
                     commentLoading(postId);
                 })
             });

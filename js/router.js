@@ -1,8 +1,9 @@
-export async function post(path, body, headers = {}){
+export async function post(path, body, headers){
     const url = `http://localhost:8080/${path}`;
     const options = {
         method: "POST",
         headers: {
+            "X-XSRF-TOKEN" : getCookie("XSRF-TOKEN"),
             ...headers
         },
         body: body instanceof FormData ? body : JSON.stringify(body),
@@ -44,11 +45,12 @@ export async function get(path, headers = {}){
     }
 }
 
-export async function patch(path, body, headers = {}){
+export async function patch(path, body, headers){
     const url = `http://localhost:8080/${path}`;
     const options = {
         method: "PATCH",
         headers: {
+            "X-XSRF-TOKEN" : getCookie("XSRF-TOKEN"),
             ...headers
         },
         body: body instanceof FormData ? body : JSON.stringify(body),
@@ -67,11 +69,12 @@ export async function patch(path, body, headers = {}){
     }
 }
 
-export async function put(path, body, headers = {}){
+export async function put(path, body, headers){
     const url = `http://localhost:8080/${path}`;
     const options = {
         method: "PUT",
         headers: {
+            "X-XSRF-TOKEN" : getCookie("XSRF-TOKEN"),
             ...headers
         },
         body: body instanceof FormData ? body : JSON.stringify(body),
@@ -90,11 +93,12 @@ export async function put(path, body, headers = {}){
     }
 }
 
-export async function del(path, headers = {}){
+export async function del(path, headers){
     const url = `http://localhost:8080/${path}`;
     const options = {
         method: "DELETE",
         headers: {
+            "X-XSRF-TOKEN" : getCookie("XSRF-TOKEN"),
             ...headers
         },
         credentials: "include"
@@ -110,4 +114,11 @@ export async function del(path, headers = {}){
             status: res.status
         }
     }
+}
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
 }
