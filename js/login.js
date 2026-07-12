@@ -20,7 +20,9 @@ loginBtn.addEventListener("click", () =>{
 
     post("login", request, {"Content-Type" : "application/json"})
     .then(result => {
-        localStorage.setItem("profileFileId", result.data.profileFileId);
+        if(result.data.profileFileId != null){
+            localStorage.setItem("profileFileId", result.data.profileFileId);
+        }
         localStorage.setItem("userId", result.data.userId);
         localStorage.setItem("userRole", result.data.userRole);
         location.replace("./post_list.html");
