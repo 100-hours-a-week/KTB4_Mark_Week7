@@ -3,6 +3,9 @@ import {get} from "./router.js";
 const postList = document.getElementById("postList");
 const emptyMessage = document.getElementById("emptyMessage");
 const writeBtn = document.getElementById("writeBtn");
+const categoryToggle = document.getElementById("categoryToggle");
+const categoryToggleLabel = document.getElementById("categoryToggleLabel");
+const categoryChips = document.getElementById("categoryChips");
 
 let lastPostId = null;
 let isLoading = false;
@@ -67,6 +70,27 @@ loadPosts();
 window.addEventListener("scroll", () => {
     if(window.scrollY + window.innerHeight >= document.body.scrollHeight - 100){
         loadPosts();
+    }
+});
+
+categoryToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    categoryChips.classList.toggle("show");
+});
+
+categoryChips.querySelectorAll(".chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+        categoryChips.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        categoryToggleLabel.textContent = chip.textContent;
+        categoryChips.classList.remove("show");
+    
+    });
+});
+
+document.addEventListener("click", (event) => {
+    if (!categoryChips.contains(event.target) && event.target !== categoryToggle) {
+        categoryChips.classList.remove("show");
     }
 });
 
