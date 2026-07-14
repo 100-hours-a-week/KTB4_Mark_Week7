@@ -49,7 +49,9 @@ function loadPosts(){
                 </div>
                 <div class="post-divider"></div>
                 <div class="post-author">
-                    <div class="author-avatar"></div>
+                    <div class="author-avatar">
+                        <img id="authorImg-${post.postId}" style="display:none;">
+                    </div>
                     <span class="author-name">${post.nickname}</span>
                 </div>
             `;
@@ -58,6 +60,14 @@ function loadPosts(){
             });
             postList.appendChild(card);
             lastPostId = post.postId;
+            if(post.thumbnailId){
+                const authorImg = document.getElementById(`authorImg-${post.postId}`);
+                get(`files/${post.thumbnailId}`)
+                .then(result => {
+                    authorImg.src = `http://localhost:8080/${result.data.filePath}`;
+                    authorImg.style.display = "block";
+                })
+            }
         }
     })
     .finally(() => {
